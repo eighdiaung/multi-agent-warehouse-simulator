@@ -13,6 +13,7 @@ class Warehouse:
         self.cols = cols
         self.grid = np.full((rows, cols), EMPTY,dtype=int)
         self.robots = []
+        self.obstacles = []
 
     def add_robot(self, robot):
         row, col = robot.position
@@ -22,6 +23,7 @@ class Warehouse:
     def add_obstacle(self, obstacle_positions):
         for row, col in obstacle_positions:
             self.grid[row, col] = OBSTACLE
+            self.obstacles.append((row, col))
 
     def add_pickup(self, pickup_positions):
         for row, col in pickup_positions:
@@ -73,3 +75,6 @@ class Warehouse:
 
         if self.is_obstacle(row, col):
             raise ValueError(f"Invalid {label} at {(row, col)}: position is occupied by an obstacle.")
+        
+
+    

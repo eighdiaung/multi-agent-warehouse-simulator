@@ -4,6 +4,8 @@ class Robot:
         self.position = start_position
         self.goal = goal
         self.current_task = None # this can be used to store the current task assigned to the robot
+        self.priority = None # this can be used to store the priority of the robot for task assignment and movement decisions
+        self.previous_position = None
 
     def __repr__(self): # representation of the robot for easy debugging and visualization
         return f"Robot(ID={self.robot_id}, Position={self.position})"
@@ -12,6 +14,7 @@ class Robot:
         print(f"{self.robot_id} | position={self.position} | goal={self.goal} | current_task={self.current_task}")
 
     def move_to(self, new_position):
+        self.previous_position = self.position
         self.position = new_position
 
     def set_goal(self, goal_position):
@@ -26,5 +29,5 @@ class Robot:
             (row+1, col), # down
             (row, col-1), # left
             (row, col+1), # right
-            (row, col)    # wait/stay
+            #(row, col)    # wait/stay
         ]
