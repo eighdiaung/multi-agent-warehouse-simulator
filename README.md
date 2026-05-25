@@ -9,6 +9,7 @@ An evolving warehouse robotics simulator exploring multi-agent coordination, pla
 - Centralized planner architecture
 - Pickup/dropoff task workflows
 - Task assignment and execution for autonomous robots
+- Added live multi-agent visualization
 
 ## Future Directions
 
