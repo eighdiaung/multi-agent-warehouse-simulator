@@ -14,6 +14,9 @@ An evolving warehouse robotics simulator exploring multi-agent coordination, pla
 - Live multi-agent visualization
 - Oscillation mitigation using short-term robot memory that prevents backtracking
 
+
+## Priority-Based Coordination Comparison
+
 <table>
   <tr>
     <td align="center">
