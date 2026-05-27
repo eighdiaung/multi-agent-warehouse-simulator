@@ -6,7 +6,7 @@ from matplotlib.lines import Line2D
 fig, ax = plt.subplots(figsize=(6, 6))
 plt.ion()
 
-def plot_simulation(warehouse, planner, step):
+def plot_simulation(warehouse, planner, step, max_priority_robot_id):
 
     ax.clear()
 
@@ -74,7 +74,8 @@ def plot_simulation(warehouse, planner, step):
             zorder=10
         )
 
-    plt.title("Multi-Agent Warehouse Simulation")
+    #plt.title("Multi-Agent Warehouse Simulation")
+    plt.title(f"{max_priority_robot_id} has highest priority | Step: {step}")
     
     ax.set_xticklabels([])
     ax.set_yticklabels([])
