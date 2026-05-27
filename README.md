@@ -20,12 +20,12 @@ An evolving warehouse robotics simulator exploring multi-agent coordination, pla
 <table>
   <tr>
     <td align="center">
-      <img src="media/warehouse_simulation_R1_prioritizing.gif" width="300"/>
+      <img src="media/warehouse_simulation_R1_prioritizing.gif" width="400"/>
       <br>
       <sub><b>R1 prioritized</b></sub>
     </td>
     <td align="center">
-      <img src="media/warehouse_simulation_R2_prioritizing.gif" width="300"/>
+      <img src="media/warehouse_simulation_R2_prioritizing.gif" width="400"/>
       <br>
       <sub><b>R2 prioritized</b></sub>
     </td>
