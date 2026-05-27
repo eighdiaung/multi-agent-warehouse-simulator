@@ -3,6 +3,11 @@ from warehouse import Warehouse
 from robot import Robot
 from planner import Planner
 from simulate import plot_simulation
+import os
+import imageio.v2 as imageio
+
+
+os.makedirs("media/frames", exist_ok=True)
 
 '''
 classes and their responsibilities:
@@ -38,8 +43,8 @@ warehouse.add_obstacle(obstacles)
 # create robots and add them to the warehouse
 robot1 = Robot(robot_id="R1", start_position=(9, 1))
 robot2 = Robot(robot_id="R2", start_position=(9, 9))
-robot1.priority = 1 # switching order here really affects the dynamics
-robot2.priority = 2
+robot1.priority = 2 # switching order here really affects the dynamics
+robot2.priority = 1
 
 warehouse.add_robot(robot1)
 warehouse.add_robot(robot2)
@@ -47,20 +52,36 @@ warehouse.add_robot(robot2)
 planner = Planner(warehouse)
 planner.add_task(pickup=(0, 0), dropoff=(9, 9))
 planner.add_task(pickup=(3, 2), dropoff=(7, 6))
+
+
+number_of_tasks = len(planner.tasks)
+
 planner.assign_tasks_to_robots(warehouse.robots)
 
-reserved_positions = planner.get_reserved_positions(warehouse.robots)
-print(reserved_positions)
+task_status = [task["status"] for task in planner.tasks]
+num_completed_tasks = task_status.count("completed")
 
-for step in range(100):
-
-    print(f"\n--- Step {step} ---")
+step = 0
+while num_completed_tasks < number_of_tasks:
 
     planner.step_all_robots()
 
-    plot_simulation(warehouse, planner)
+    plot_simulation(warehouse, planner, step)
 
-    robot1.display_status()
-    robot2.display_status()
+    #robot1.display_status()
+    #robot2.display_status()
+    #print(planner.tasks)
 
-    print(planner.tasks)
+    task_status = [task["status"] for task in planner.tasks]
+    num_completed_tasks = task_status.count("completed")
+
+    step += 1
+
+
+
+frames = []
+for i in range(step):
+    image = imageio.imread(f"media/frames/frame_{i:03d}.png")
+    frames.append(image)
+
+imageio.mimsave("media/warehouse_simulation_R1_prioritizing.gif", frames, duration=0.3)

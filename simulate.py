@@ -1,9 +1,12 @@
 import matplotlib.pyplot as plt
 
+from matplotlib.patches import Patch
+from matplotlib.lines import Line2D
+
 fig, ax = plt.subplots(figsize=(6, 6))
 plt.ion()
 
-def plot_simulation(warehouse, planner):
+def plot_simulation(warehouse, planner, step):
 
     ax.clear()
 
@@ -76,4 +79,40 @@ def plot_simulation(warehouse, planner):
     ax.set_xticklabels([])
     ax.set_yticklabels([])
     ax.tick_params(length=0)
+
+    legend_elements = [
+        Patch(facecolor="green", label="Robot"),
+        Patch(facecolor="gray", label="Obstacle"),
+        Line2D(
+            [0],
+            [0],
+            marker="x",
+            color="red",
+            linestyle="None",
+            markersize=12,
+            markeredgewidth=3,
+            label="Pickup"
+        ),
+        Line2D(
+            [0],
+            [0],
+            marker="o",
+            color="black",
+            fillstyle="none",
+            linestyle="None",
+            markersize=12,
+            markeredgewidth=3,
+            label="Dropoff"
+        )
+    ]
+
+    ax.legend(
+        handles=legend_elements,
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.05),
+        ncol=4
+    )
+
+    plt.savefig(f"media/frames/frame_{step:03d}.png")
+
     plt.pause(0.3)

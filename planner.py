@@ -126,22 +126,6 @@ class Planner:
 
         return True # return boolean to signal iterations to continue until the robot has reached its goal
 
-
-    def step_all_robots_old(self):
-        reserved_positions = set()
-
-        robots_by_priority = self.get_robots_by_priority(self.get_robots())
-
-        for robot in robots_by_priority:
-
-            if robot.goal is None:
-                continue
-
-            best_move = self.choose_best_move(robot, reserved_positions)
-            reserved_positions.add(best_move)
-            self.warehouse.move_robot(robot, best_move)
-            self.update_task_progress(robot)
-
     def step_all_robots(self):
 
         reserved_positions = set()
@@ -152,7 +136,7 @@ class Planner:
             # Check task state before movement
             self.update_task_progress(robot)
 
-            if robot.goal is None:
+            if robot.goal is None: # if the robot has no goal, then there is no need to compute a move for it
                 continue
 
             # Check again in case update_task_progress completed a task
@@ -161,10 +145,6 @@ class Planner:
                 continue
 
             best_move = self.choose_best_move(robot, reserved_positions)
-
             reserved_positions.add(best_move)
-
             self.warehouse.move_robot(robot, best_move)
-
-            # Check task state after movement
             self.update_task_progress(robot)

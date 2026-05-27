@@ -5,11 +5,32 @@ An evolving warehouse robotics simulator exploring multi-agent coordination, pla
 ## Current Features
 
 - Grid-based warehouse environments with obstacles
-- Goal-directed robot navigation using Manhattan distance
-- Centralized planner architecture
+- Goal-directed robot navigation
+- Centralized multi-agent planner architecture
 - Pickup/dropoff task workflows
-- Task assignment and execution for autonomous robots
-- Added live multi-agent visualization
+- Autonomous task assignment and execution
+- Priority-based robot coordination
+- Reservation-based collision avoidance
+- Live multi-agent visualization
+- Oscillation mitigation using short-term robot memory that prevents backtracking
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="media/warehouse_simulation_R1_prioritizing.gif" width="400"/>
+      <br>
+      <sub><b>R1 prioritized</b></sub>
+    </td>
+
+    <td align="center">
+      <img src="media/warehouse_simulation_R2_prioritizing.gif" width="400"/>
+      <br>
+      <sub><b>R2 prioritized</b></sub>
+    </td>
+  </tr>
+</table>
+
+The robot priority ordering affects coordination dynamics, movement decisions, and overall task execution behavior.
 
 ## Future Directions
 
