@@ -43,8 +43,8 @@ warehouse.add_obstacle(obstacles)
 # create robots and add them to the warehouse
 robot1 = Robot(robot_id="R1", start_position=(9, 1))
 robot2 = Robot(robot_id="R2", start_position=(9, 9))
-robot1.priority = 2 # switching order here really affects the dynamics
-robot2.priority = 1
+robot1.priority = 1 # switching order here really affects the dynamics
+robot2.priority = 2
 
 warehouse.add_robot(robot1)
 warehouse.add_robot(robot2)
@@ -84,4 +84,4 @@ for i in range(step):
     image = imageio.imread(f"media/frames/frame_{i:03d}.png")
     frames.append(image)
 
-imageio.mimsave("media/warehouse_simulation_R1_prioritizing.gif", frames, duration=0.3)
+imageio.mimsave("media/warehouse_simulation_R2_prioritizing.gif", frames, duration=0.3, loop=0)
